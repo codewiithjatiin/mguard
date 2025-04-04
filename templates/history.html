@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scan History - Mguard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .history-table th, .history-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .history-table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .history-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .status-safe {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-malware {
+            color: red;
+            font-weight: bold;
+        }
+
+        .btn-group {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .history-table th, .history-table td {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🧾 Scan History</h1>
+
+    {% if history %}
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Filename</th>
+                    <th>Result</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in history %}
+                    <tr>
+                        <td>{{ entry.filename }}</td>
+                        <td class="{{ 'status-malware' if 'Malware' in entry.result else 'status-safe' }}">
+                            {{ entry.result }}
+                        </td>
+                        <td>{{ entry.timestamp }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align:center; font-size: 1.1rem; color: #555;">No scan history found yet.</p>
+    {% endif %}
+
+    <div class="btn-group">
+        <a href="{{ url_for('scan') }}" class="btn">🔍 Scan Another File</a>
+        <a href="{{ url_for('dashboard') }}" class="btn">🏠 Back to Dashboard</a>
+        <a href="{{ url_for('logout') }}" class="btn">🚪 Logout</a>
+    </div>
+</body>
+</html>

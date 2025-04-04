@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scan File - Mguard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body class="light-mode">
+    <div class="container">
+        <h1>Mguard - File Scanner</h1>
+
+        <form action="/scan" method="POST" enctype="multipart/form-data" class="scan-form">
+            <input type="file" name="file" required>
+            <div class="button-group">
+                <button type="submit" class="btn scan-btn">Scan</button>
+                <a href="{{ url_for('history') }}" class="btn history-btn">View History</a>
+                <a href="{{ url_for('dashboard') }}" class="btn back-btn">⬅ Back to Dashboard</a>
+                <button class="btn toggle-btn" id="toggleMode">Toggle Theme</button>
+            </div>
+        </form>
+
+        {% if filename %}
+            <div class="result">
+                <h3>Scan Result for: <span>{{ filename }}</span></h3>
+                <p class="{{ 'malware' if result == 'Malware Detected' else 'safe' }}">
+                    {{ result }}
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

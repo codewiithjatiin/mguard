@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGuard Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <div class="mode-switch" onclick="toggleMode()">🌙 / ☀️</div>
+
+  <div class="container">
+    <h1 class="typing-text">🚀 Welcome to MGuard, Jatin!</h1>
+    
+    <div class="status-panel">
+      <div class="card">
+        <h3>🧠 AI Protection</h3>
+        <p>Real-time threat detection powered by VirusTotal API</p>
+      </div>
+      <div class="card">
+        <h3>🔐 Secure Access</h3>
+        <p>Password protected scanning and history view</p>
+      </div>
+      <div class="card">
+        <h3>🎮 Gamified Learning</h3>
+        <p>Coming soon: Cybersecurity levels and badges</p>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <a href="/scan"><button class="btn">🛡️ Start Scan</button></a>
+      <a href="/history"><button class="btn">📂 View History</button></a>
+      <a href="/logout"><button class="btn">🚪 Logout</button></a>
+    </div>
+  </div>
+</body>
+</html>

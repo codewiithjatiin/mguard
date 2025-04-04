@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MGuard | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+    <div class="login-container glassmorphic-card">
+        <h1 class="login-title">🚨 MGuard Access</h1>
+        <form method="POST" action="/">
+            <input type="password" name="password" class="login-input" placeholder="Enter Secure Password" required>
+            <button type="submit" class="login-button neon-btn">Login</button>
+        </form>
+    </div>
+    <div class="cyber-lines"></div>
+</body>
+</html>
